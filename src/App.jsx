@@ -3,9 +3,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
+
 import Background from "./components/Background";
-import ModuleCard from "./components/ModuleCard";
-import Grid from "@mui/material/Grid";
+import MainGrid from "./MainGrid";
 const App = () => {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
@@ -25,14 +25,7 @@ const App = () => {
 			<Background>
 				<Container maxWidth={false} sx={{ padding: theme.spacing(3) }}>
 					{/* <Box sx={{ flexGrow: 1 }}> */}
-					<Grid container spacing={2}>
-						<ModuleCard />
-						<ModuleCard />
-						<ModuleCard />
-						<ModuleCard />
-						<ModuleCard />
-						<ModuleCard />
-					</Grid>
+					<MainGrid />
 					{/* </Box> */}
 				</Container>
 			</Background>

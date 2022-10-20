@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
+import { useTheme } from "@mui/material/styles";
 
 const getImage = () => {
 	const url = "https://dog.ceo/api/breed/terrier/yorkshire/images/random";
@@ -10,6 +11,7 @@ const getImage = () => {
 };
 
 const Background = (props) => {
+	const theme = useTheme();
 	const [image, setImage] = useState(null);
 
 	useEffect(() => {
@@ -25,7 +27,7 @@ const Background = (props) => {
 	}
 
 	return (
-		<div>
+		<Fragment>
 			<img
 				src={image}
 				alt="background"
@@ -34,7 +36,10 @@ const Background = (props) => {
 					overflow: "hidden",
 					width: "100vw",
 					height: "100vh",
-					// filter: "brightness(0.9)",
+					filter:
+						theme.palette.mode === "light"
+							? "brightness(0.95)"
+							: "brightness(0.5)",
 				}}
 			/>
 
@@ -45,7 +50,7 @@ const Background = (props) => {
 			>
 				{props.children}
 			</div>
-		</div>
+		</Fragment>
 	);
 };
 
