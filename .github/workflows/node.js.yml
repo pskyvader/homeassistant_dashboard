@@ -46,8 +46,8 @@ jobs:
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
-      with:
-        path: build
+     # with:
+       # path: build
 
 
     # Deployment job
