@@ -8,9 +8,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
-
-workflow_dispatch:
 jobs:
   build:
 
@@ -23,8 +22,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-- name: Setup Pages
-        uses: actions/configure-pages@v2
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -40,7 +40,7 @@ jobs:
         path: build
 
 
-# Deployment job
+    # Deployment job
   deploy:
     environment:
       name: github-pages
