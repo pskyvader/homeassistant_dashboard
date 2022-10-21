@@ -45,9 +45,9 @@ jobs:
     #- run: npm test
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-pages-artifact@v1
       with:
-        name: "_site"
+        #name: "_site"
         path: "build/"
 
     # Deployment job
