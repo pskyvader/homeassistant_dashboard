@@ -34,7 +34,7 @@ const Clock = () => {
 	}, [time, setTime]);
 
 	return (
-		<ModuleCard sizes={{ md: 4 }}>
+		<ModuleCard sizes={{ md: 3 }}>
 			<div
 				style={{
 					textAlign: "center",
@@ -42,22 +42,22 @@ const Clock = () => {
 				}}
 			>
 				<Typography
-					variant="h1"
+					variant="h3"
 					color="textPrimary"
-					sx={{ display: "inline-flex" }}
+					sx={{ display: "inline" }}
 				>
 					{`${time.hours}:${time.minutes}`}
 				</Typography>
 				<Typography
-					variant="h2"
+					variant="h5"
 					color="textPrimary"
-					pl={2}
+					pl={1}
 					// align="right"
-					sx={{ display: "inline-flex" }}
+					sx={{ display: "inline" }}
 				>
 					{`${time.seconds}`}
 				</Typography>
-				<Typography variant="h4" color="textPrimary">
+				<Typography variant="h6" color="textPrimary" noWrap>
 					{`${time.date}`}
 				</Typography>
 			</div>

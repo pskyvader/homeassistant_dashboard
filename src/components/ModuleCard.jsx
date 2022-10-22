@@ -22,13 +22,13 @@ const ModuleCard = (props) => {
 			lg={sizes.lg}
 			xl={sizes.xl}
 			display="flex"
-			justifyContent="center"
+			justifyContent="space-between"
 			alignItems="center"
 		>
 			<Card
 				raised
 				sx={{
-					width: "100%",
+					// width: "100%",
 					backgroundColor:
 						theme.palette.mode === "light"
 							? "rgba(255,255,255,0.5)"
