@@ -18,7 +18,7 @@ const Background = (props) => {
 	const theme = useTheme();
 	const [image, setImage] = useState("https://picsum.photos/1920/1080");
 	const [loading, setLoading] = useState(false);
-	const tenMinutes = 1000 * 6;
+	const pauseTime = 1000 * 30;
 
 	useEffect(() => {
 		// if (image === null) {
@@ -27,13 +27,17 @@ const Background = (props) => {
 		// });
 		// }
 		const backgroundInterval = setInterval(() => {
-			setLoading(true);
 			getImage().then((newimage) => {
 				const img = new Image();
 				img.src = newimage;
 				img.onload = () => {
-					setLoading(false);
-					setImage(newimage);
+					setLoading(true);
+					setTimeout(() => {
+						setImage(newimage);
+					}, 600);
+					setTimeout(() => {
+						setLoading(false);
+					}, 750);
 				};
 			});
 			// if (image === "https://picsum.photos/1920/1080") {
@@ -41,18 +45,18 @@ const Background = (props) => {
 			// } else {
 			// 	setImage("https://picsum.photos/1920/1080");
 			// }
-		}, tenMinutes);
+		}, pauseTime);
 		return () => {
 			clearInterval(backgroundInterval);
 		};
-	}, [image, setImage, tenMinutes, setLoading]);
+	}, [image, setImage, pauseTime, setLoading]);
 
 	// if (image === null) {
 	// 	return null;
 	// }
 	// const image = "https://picsum.photos/1920/1080";
 
-	let filter = "brightness(0.1) blur(10px)";
+	let filter = "brightness(0)";
 	if (!loading) {
 		filter =
 			theme.palette.mode === "light"
@@ -71,10 +75,10 @@ const Background = (props) => {
 					width: "100vw",
 					height: "100vh",
 					filter: filter,
-					clipPath: loading ? "inset(0)" : "",
+					// clipPath: loading ? "inset(0)" : "",
 					transition: loading
-						? "filter cubic-bezier(0, 0, 0, 1) 0.5s"
-						: "filter cubic-bezier(1, 0, 0, 0) 0.5s",
+						? "filter cubic-bezier(0, 0, 0, 1) 1s"
+						: "filter cubic-bezier(1, 0, 0, 0) 1s",
 				}}
 			/>
 
