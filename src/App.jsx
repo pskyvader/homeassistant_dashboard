@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 
 import Background from "./components/Background";
 import MainGrid from "./MainGrid";
+import HomeassistantContextProvider from "./context/HomeassistantContextProvider";
 const App = () => {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
@@ -25,7 +26,9 @@ const App = () => {
 			<Background>
 				<Container maxWidth={false} sx={{ padding: theme.spacing(3) }}>
 					{/* <Box sx={{ flexGrow: 1 }}> */}
-					<MainGrid />
+					<HomeassistantContextProvider>
+						<MainGrid />
+					</HomeassistantContextProvider>
 					{/* </Box> */}
 				</Container>
 			</Background>
