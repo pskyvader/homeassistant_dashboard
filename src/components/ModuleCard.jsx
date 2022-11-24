@@ -24,6 +24,7 @@ const ModuleCard = (props) => {
 			display="flex"
 			justifyContent="space-between"
 			alignItems="center"
+			ref={props.reference ? props.reference : null}
 		>
 			<Card
 				raised
@@ -37,7 +38,12 @@ const ModuleCard = (props) => {
 				}}
 			>
 				<CardContent
-					sx={{ minWidth: 150, minHeight: 150, display: "flex" }}
+					sx={{
+						minWidth: 150,
+						minHeight: 150,
+						display: "flex",
+						...props.sx,
+					}}
 				>
 					{props.children}
 				</CardContent>

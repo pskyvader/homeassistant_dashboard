@@ -41,7 +41,6 @@ const Configuration = () => {
 
 		createConnection({ auth })
 			.then((connection) => {
-				console.log("Successfull connection", connection);
 				setCookie("hass_configuration", JSON.stringify(formInput));
 				setConfiguration(formInput);
 				//save in cookie

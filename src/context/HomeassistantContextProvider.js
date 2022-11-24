@@ -14,9 +14,11 @@ const HomeassistantContextProvider = (props) => {
 	const [cookies, setCookie] = useCookies(["hass_configuration"]);
 	const [configuration, setConfiguration] = useReducer(
 		(_currentConfiguration, newConfiguration) => newConfiguration,
-		null
+		cookies.hass_configuration
 	);
-	const [apiData, setApiData] = useReducer(null);
+	const [apiData, setApiData] = useReducer((currentData, newData) => {
+		return { ...currentData, ...newData };
+	}, null);
 
 	const provider = useMemo(
 		() => ({
@@ -40,6 +42,7 @@ const HomeassistantContextProvider = (props) => {
 			createConnection({ auth })
 				.then((connection) => {
 					subscribeEntities(connection, (entities) => {
+						console.log("new update");
 						setApiData(entities);
 					});
 				})

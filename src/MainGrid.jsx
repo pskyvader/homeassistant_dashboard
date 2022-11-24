@@ -10,6 +10,7 @@ const MainGrid = () => {
 			<Clock />
 			<ScreenSize />
 			<Configuration />
+			<Entities />
 		</Grid>
 	);
 };
