@@ -42,7 +42,7 @@ const HomeassistantContextProvider = (props) => {
 			createConnection({ auth })
 				.then((connection) => {
 					subscribeEntities(connection, (entities) => {
-						console.log("new update");
+						// console.log("new update");
 						setApiData(entities);
 					});
 				})

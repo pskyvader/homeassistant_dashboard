@@ -1,7 +1,4 @@
 import { useState, useContext, useEffect, useReducer, useRef } from "react";
-// import { useState, useEffect, useContext } from "react";
-// import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
 import Collapse from "@mui/material/Collapse";
 import { purple, grey } from "@mui/material/colors";
 
@@ -12,21 +9,23 @@ const SingleEntity = ({ entityId }) => {
 	const [color, setColor] = useState(null);
 	const [active, setActive] = useState(false);
 	const { apiData } = useContext(HomeassistantContext);
-	const [entity, setEntity] = useState(null);
+	const [entity, setEntity] = useReducer((state, newState) => {
+		if (
+			!state ||
+			state.last_updated !== newState.last_updated ||
+			state.last_changed !== newState.last_changed
+		) {
+			setActive(false);
+			return newState;
+		}
+		// console.log(state.last_updated, newState.last_updated);
+		return state;
+	}, null);
 
 	const ref = useRef(null);
 
-	// const entity = currentEntity;
-
 	useEffect(() => {
-		if (
-			!entity ||
-			apiData[entityId].last_updated !== entity.last_updated ||
-			apiData[entityId].last_changed !== entity.last_changed
-		) {
-			setActive(false);
-			setEntity({ ...apiData[entityId] });
-		}
+		setEntity(apiData[entityId]);
 		if (!active && entity) {
 			// console.log( "%c " + entity.entity_id + "," + entity.last_updated + ", active:" + active, "color: red" );
 			ref.current.scrollIntoView();
