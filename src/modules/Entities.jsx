@@ -16,6 +16,7 @@ const SingleEntity = ({ entityId }) => {
 			state.last_changed !== newState.last_changed
 		) {
 			setActive(false);
+			setColor(purple[900]);
 			return newState;
 		}
 		// console.log(state.last_updated, newState.last_updated);
@@ -25,13 +26,15 @@ const SingleEntity = ({ entityId }) => {
 	const ref = useRef(null);
 
 	useEffect(() => {
-		setEntity(apiData[entityId]);
 		if (!active && entity) {
 			// console.log( "%c " + entity.entity_id + "," + entity.last_updated + ", active:" + active, "color: red" );
 			ref.current.scrollIntoView();
-			setColor(purple[900]);
 			setActive(true);
+			setTimeout(() => {
+				setColor(grey[900]);
+			}, 5000);
 		}
+		setEntity(apiData[entityId]);
 	}, [active, entity, apiData, entityId]);
 
 	if (!entity) return null;
@@ -50,16 +53,12 @@ const SingleEntity = ({ entityId }) => {
 					exit: 0,
 				}}
 				collapsedSize={0}
-				addEndListener={(event) => {
-					setTimeout(() => {
-						setColor(grey[900]);
-					}, 5000);
-				}}
 			>
 				<pre
 					style={{
 						whiteSpace: "pre-wrap",
-						overflow: "auto",
+						overflowY: "auto",
+						overflowX: "hidden",
 						maxHeight: 300,
 					}}
 				>
